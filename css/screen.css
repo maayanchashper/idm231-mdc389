@@ -48,6 +48,7 @@ h2 {
     padding: 0rem;
     align-items: center;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 /* Centering the grid */
@@ -91,6 +92,50 @@ h2 {
     align-items: center;
     margin: 2rem auto;
 }
+
+/* Center the dob form */
+#dob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 400px;
+}
+
+.submit-button {
+    background-color: #ffffff;
+    padding: .2rem;
+    border-radius: 3px;
+    border-width: 1px;
+}
+
+#help-button {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#help-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 
 
