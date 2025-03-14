@@ -9,87 +9,126 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <h1>
-            What fish species are you?
-        </h1>
-
-        <button id="help-button">
-            ?
-        </button>
-
-
-        <h2>
-            Click to find out what fish your zodiac sign corresponds to or enter your birthdate to find out!
-        </h2>
-
+    <!--homepage and main container-->
+    <div class="main-container" id="main-container">
+        <div class="content-container">
+            <h1>
+                What fish species are you?
+            </h1>
+            <div class="directions-and-help">
+                <h2>
+                    Click to find out what fish your zodiac sign corresponds to or enter your birthdate to find out!
+                </h2>
+                <button type="help" class="help-button">
+                    ?
+                </button>
+            </div>
 
         <form id="dob">
             <div class="dob-details">
-                <div class="dob-month-day">
-                    <label for="input-month">Month:</label>
-                    <input class="input-month" type="number" id="month" min="1" max="12" required>
-                    <label for="input-day">Day:</label>
-                    <input class="input-day" type="number" id="day" min="1" max="31" required>
-                </div>
+                <label for = "birthday">Enter Your Birthday:</label>
                 <br>
+                <input type="date" name="birthday" required>
+                <br>
+                <button type="submit" class="general-button">
+                    submit
+                </button>
             </div>
-            <button class="submit-button">
-                Submit
-            </button>
+            <ul class="errors" hidden></ul>
         </form>
+    
 
-        <div class="image-grid">
-            <div>
-                <img alt="Aries" src="Zodiac1.png" width="208">
+    <!--was record-container and caprocron-button-->
+    <div class="image-grid">
+        <button class="aries-button image-link">
+            <div class="image-container">
+                <img src="Zodiac1.png" alt="aries" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Taurus" src="Zodiac2.png" width="208">
+        <button class="taurus-button image-link">
+            <div class="image-container">
+                <img src="Zodiac2.png" alt="taurus" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Gemini" src="Zodiac3.png" width="208">
+        <button class="gemini-button image-link">
+            <div class="image-container">
+                <img src="Zodiac3.png" alt="gemini" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Cancer" src="Zodiac4.png" width="208">
+        <button class="cancer-button image-link">
+            <div class="image-container">
+                <img src="Zodiac4.png" alt="cancer" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Leo" src="Zodiac5.png" width="208">
+        <button class="leo-button image-link">
+            <div class="image-container">
+                <img src="Zodiac5.png" alt="leo" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Virgo" src="Zodiac6.png" width="208">
+        <button class="virgo-button image-link">
+            <div class="image-container">
+                <img src="Zodiac6.png" alt="virgo" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Libra" src="Zodiac7.png" width="208">
+        <button class="libra-button image-link">
+            <div class="image-container">
+                <img src="Zodiac7.png" alt="libra" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Scorpio" src="Zodiac8.png" width="208">
+        <button class="scorpio-button image-link">
+            <div class="image-container">
+                <img src="Zodiac8.png" alt="scorpio" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Sagittarius" src="Zodiac9.png" width="208">
+        <button class="sagittarius-button image-link">
+            <div class="image-container">
+                <img src="Zodiac9.png" alt="sagittarius" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Capricorn" src="Zodiac10.png" width="208">
+        <button class="capricorn-button image-link">
+            <div class="image-container">
+                <img src="Zodiac10.png" alt="capricorn" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Aquarius" src="Zodiac11.png" width="208">
+        <button class="aquarius-button image-link">
+            <div class="image-container">
+                <img src="Zodiac11.png" alt="aquarius" width="160">
             </div>
+        </button>
 
-            <div>
-                <img alt="Pisces" src="Zodiac12.png" width="208">
+        <button class="pisces-button image-link">
+            <div class="image-container">
+                <img src="Zodiac12.png" alt="pisces" width="160">
             </div>
-        </div>
+        </button>
     </div>
+</div>
 
+    <!--zodiac result container-->
+    <div class="zodiac-container" id="zodiac-container">
+        <div class="zodiac-content-container">
+            <h1 id="question">What fish species are you?</h1>
+            <h2 id="answer">If you're an Aries then you must be a... drum roll please... puffer fish!</h2>
+        </div>
+
+        <div class="zodiac-image-container">
+            <img id="zodiac-img" alt="aries puffer" height="550" src="images/puffer.png" width="800">
+        </div>
+    </div>   
+
+    <script src="main.js"></script>
+    
+    <!--Zodiac Results
     <div class="zodiac-container">
         <h1>
             What fish species are you?
@@ -105,4 +144,181 @@
             </div>
         </div>
     </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Taurus then you must be a... drum roll please... parrotfish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="parrot.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Gemini then you must be a... drum roll please... trumpetfish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="trumpet.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Cancer then you must be a... drum roll please... lion fish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="lion.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Leo then you must be a... drum roll please... trunkfish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="trunk.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Virgo then you must be a... drum roll please... spotted drum!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="drum.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Libra then you must be a... drum roll please... squirrelfish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="squirrel.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Scorpio then you must be a... drum roll please... tarpon!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="tarpon.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Sagittarius then you must be a... drum roll please... lizard fish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="lizard.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Capricorn then you must be a... drum roll please... fairy basslet!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="fairy.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're an Aquarius then you must be a... drum roll please... queen angelfish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="angel.png" width="800">
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-container">
+        <h1>
+            What fish species are you?
+        </h1>
+        
+        <h2>
+            If you're a Pisces then you must be a... drum roll please... butterfly fish!
+        </h2>
+        
+        <div class="image-zodiac">
+            <div>
+                <img alt="parrot1" src="butterfly.png" width="800">
+            </div>
+        </div>
+    </div>
+    -->
 </body>
