@@ -20,21 +20,21 @@ const zodiac_data = [
         img: 'images/parrot.png',
         question: "What fish species are you?",
         answer: "If you're a Taurus then you must be a... drum roll please... parrotfish!",
-        sound: "audio/bubbles2.mp3",
+        sound: "audio/bubbles4.mp3",
     },
     {
         sign: 'GEMINI',
         img: 'images/trumpet.png',
         question: "What fish species are you?",
         answer: "If you're a Gemini then you must be a... drum roll please... trumpetfish!",
-        sound: "audio/bubbles3.mp3",
+        sound: "audio/bubbles8.mov",
     },
     {
         sign: 'CANCER',
         img: 'images/lion.png',
         question: "What fish species are you?",
         answer: "If you're a Cancer then you must be a... drum roll please... lion fish!",
-        sound: "audio/bubbles4.mp3",
+        sound: "audio/bubbles12.mov",
     },    
     {
         sign: 'LEO',
@@ -48,49 +48,49 @@ const zodiac_data = [
         img: 'images/drum.png',
         question: "What fish species are you?",
         answer: "If you're a Virgo then you must be a... drum roll please... spotted drum!",
-        sound: "audio/bubbles6.mov",
+        sound: "audio/bubbles10.mov",
     },    
     {
         sign: 'LIBRA',
         img: 'images/squirrel.png',
         question: "What fish species are you?",
         answer: "If you're a Libra then you must be a... drum roll please... squirrelfish!",
-        sound: "audio/bubbles7.mov",
+        sound: "audio/bubbles3.mp3",
     },    
     {
         sign: 'SCORPIO',
         img: 'images/tarpon.png',
         question: "What fish species are you?",
         answer: "If you're a Scorpio then you must be a... drum roll please... tarpon!",
-        sound: "audio/bubbles8.mov",
+        sound: "audio/bubbles2.mp3",
     },    
     {
         sign: 'SAGITTARIUS',
         img: 'images/lizard.png',
         question: "What fish species are you?",
         answer: "If you're a Sagittarius then you must be a... drum roll please... lizard fish!",
-        sound: "audio/bubbles9.mov",
+        sound: "audio/bubbles11.mov",
     },    
     {
         sign: 'CAPRICORN',
         img: 'images/fairy.png',
         question: "What fish species are you?",
         answer: "If you're a Capricorn then you must be a... drum roll please... fairy basslet!",
-        sound: "audio/bubbles10.mov",
+        sound: "audio/bubbles6.mov",
     },    
     {
         sign: 'AQUARIUS',
         img: 'images/angel.png',
         question: "What fish species are you?",
         answer: "If you're an Aquarius then you must be a... drum roll please... queen angelfish!",
-        sound: "audio/bubbles11.mov",
+        sound: "audio/bubbles9.mov",
     },    
     {
         sign: 'PISCES',
         img: 'images/butterfly.png',
         question: "What fish species are you?",
         answer: "If you're a Pisces then you must be a... drum roll please... butterfly fish!",
-        sound: "audio/bubbles12.mov",
+        sound: "audio/bubbles7.mov",
     }
         //help screen
 ]
@@ -229,6 +229,12 @@ function playZodiacSound(sign) {
         currentAudio = new Audio(zodiac.sound);
         currentAudio.volume = 0.7;
         currentAudio.play(); 
+    }
+
+    if (zodiac.sound.includes("bubbles3.mp3")) {
+        currentAudio.volume = 0.3; // Set a lower volume for this specific audio
+    } else {
+        currentAudio.volume = 0.7;
     }
 }
 
