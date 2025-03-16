@@ -1,12 +1,3 @@
-// variables
-let sign = "";
-let img = "";
-let question = "";
-let answer = "";
-let sound = "";
-// let buttonText = "";
-
-// array for each zodiac
 const zodiac_data = [
     {
         sign: 'ARIES',
@@ -91,48 +82,58 @@ const zodiac_data = [
         question: "What fish species are you?",
         answer: "If you're a Pisces then you must be a... drum roll please... butterfly fish!",
         sound: "audio/bubbles7.mov",
+    },
+    {
+        sign: 'HELP',
+        question: "Have you ever wondered what fish species matches your zodiac sign? If the answer is yes, click your zodiac sign or enter your birthdate to find out!",
     }
-        //help screen
 ]
 
-// variables to select the buttons corresponding to each zodiac sign
-//allow the user to click on a specific zodiac sign to display its information.
-const maskAries = document.querySelector('.aries-button');
-const maskTaurus = document.querySelector('.taurus-button');
-const maskGemini = document.querySelector('.gemini-button');
-const maskCancer = document.querySelector('.cancer-button');
-const maskLeo = document.querySelector('.leo-button');
-const maskVirgo = document.querySelector('.virgo-button');
-const maskLibra = document.querySelector('.libra-button');
-const maskScorpio = document.querySelector('.scorpio-button');
-const maskSagittarius = document.querySelector('.sagittarius-button');
-const maskCapricorn = document.querySelector('.capricorn-button');
-const maskAquarius = document.querySelector('.aquarius-button');
-const maskPisces = document.querySelector('.pisces-button');
+// variables to select buttons corresponding to each zodiac sign
+const ariesButton = document.querySelector('.aries-button');
+const taurusButton = document.querySelector('.taurus-button');
+const geminiButton = document.querySelector('.gemini-button');
+const cancerButton = document.querySelector('.cancer-button');
+const leoButton = document.querySelector('.leo-button');
+const virgoButton = document.querySelector('.virgo-button');
+const libraButton = document.querySelector('.libra-button');
+const scorpioButton = document.querySelector('.scorpio-button');
+const sagittariusButton = document.querySelector('.sagittarius-button');
+const capricornButton = document.querySelector('.capricorn-button');
+const aquariusButton = document.querySelector('.aquarius-button');
+const piscesButton = document.querySelector('.pisces-button');
+const helpButton = document.querySelector('.help-button');
+const backButtonInZodiac = document.querySelector('.zodiac-container .back-button');
+const backButtonInHelp = document.querySelector('.help .back-button');
 
-// const maskHelp = document.querySelector('.help-button');
-
-//const maskBackButton = document.getElementById('back');
-
-// get the main container and zodiac container
+// get main container and zodiac container
 const mainContainer = document.getElementById('main-container');
 const zodiacContainer = document.getElementById('zodiac-container');
+const helpContainer = document.getElementById('help-container');
 
-// function to reveal the zodiac result
+
+// function to reveal zodiac result
 function showZodiacContainer() {
     mainContainer.style.display = 'none'; 
     zodiacContainer.style.display = 'flex';
 }
 
-// function to go back to the the main container
+// function to go back to main container
 function showMainContainer() {
     mainContainer.style.display = 'flex'; // Show the main container
     zodiacContainer.style.display = 'none'; // Hide the zodiac container
+    helpContainer.style.display = 'none'; 
 }
 
-// handling the form
-const form = document.querySelector('form')
-const error_list = document.querySelector('.errors')
+// function to reveal help container
+function showHelpContainer() {
+    mainContainer.style.display = 'none'; 
+    helpContainer.style.display = 'flex';
+}
+
+// date input and selection form
+const form = document.querySelector('form');
+const error_list = document.querySelector('.errors');
 
 function log_birthday(birthday) {
     const date = {
@@ -143,13 +144,10 @@ function log_birthday(birthday) {
     return date;
 }
 
-// get today's date
 const today = new Date();
 
-// format it to YYYY-MM-DD (only date part, no time zone issue)
-const formattedDate = today.toLocaleDateString('en-CA');  // 'en-CA' format is YYYY-MM-DD
+const formattedDate = today.toLocaleDateString('en-CA');
 
-// get the birthday input field and set the max value
 const birthdayInput = document.querySelector('input[name="birthday"]');
 if (birthdayInput) {
     birthdayInput.setAttribute('max', formattedDate);
@@ -159,40 +157,19 @@ function handle_submit(event) {
     event.preventDefault();
     const errors = [];
 
-    // Get the birthday value
     const birthdayValue = form.elements['birthday'].value;
     
-    // Convert it to a date object
     const selectedDate = new Date(birthdayValue);
     
-    // Compare with today's date
     if (selectedDate > today) {
         errors.push("The date cannot be in the future.");
-    }
-
-    if (errors.length) {
-        errors.forEach((error) => {
-            const li = document.createElement('li');
-            const text = document.createTextNode(error);
-
-            li.appendChild(text)
-
-            if (error_list) {
-                error_list.appendChild(li);
-                error_list.hidden = false;
-            }
-        });
-        return false;
-    } else {
-        error_list.hidden = true;
-        error_list.innerHTML = '';
     }
 
     const date_object = log_birthday(form.elements['birthday'].value.split('-'));
     const month = date_object.month;
     const day = date_object.day;
 
-    let z = getZodiac(Number(month), Number(day));  
+    getZodiac(Number(month), Number(day));  
     showZodiacContainer();  
 }
 
@@ -200,7 +177,6 @@ if (form) {
     form.addEventListener('submit', handle_submit);
 }
 
-// handling audio
 let currentAudio = null;
 
 // function to stop sound from playing
@@ -208,11 +184,11 @@ function stopCurrentAudio() {
     if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
-        currentAudio = null; // clear the reference
+        currentAudio = null;
     }
 }
 
-// function to play the sound for the corresponding sign
+// function to play sound for corresponding sign
 function playZodiacSound(sign) {
     stopCurrentAudio();
 
@@ -232,7 +208,7 @@ function playZodiacSound(sign) {
     }
 
     if (zodiac.sound.includes("bubbles3.mp3")) {
-        currentAudio.volume = 0.3; // Set a lower volume for this specific audio
+        currentAudio.volume = 0.3; // Set a lower volume for this audio
     } else {
         currentAudio.volume = 0.7;
     }
@@ -240,7 +216,7 @@ function playZodiacSound(sign) {
 
 /**
  * @description
- * Given a month and day, determine the corresponding Zodiac sign.
+ * Given a month and day, determine the corresponding Zodiac sign
  * @param {number} month - month of the year (1-12)
  * @param {number} day - day of the month (1-31)
  * @returns {string} the corresponding Zodiac sign
@@ -249,7 +225,7 @@ function playZodiacSound(sign) {
 function getZodiac(month, day) {
     let zodiacSign = "";
     if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
-        zodiacSign = "CAPRICORN"
+        zodiacSign = "CAPRICORN";
     } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
         zodiacSign = "SAGITTARIUS";
     } else if ((month === 10 && day >= 24) || (month === 11 && day <= 21)) {
@@ -274,18 +250,15 @@ function getZodiac(month, day) {
         zodiacSign = "AQUARIUS";
     } 
 
-    // find the zodiac sign object that matches the zodiacSign
+    // find zodiac sign object that matches zodiacSign
     let zodiac = zodiac_data.find(z => z.sign === zodiacSign);
 
     if (zodiac) {
-        console.log("Selected Zodiac:", zodiac); // Debugging log
         const displayImage = document.getElementById('zodiac-img');
-        console.log("Display Image Element:", displayImage); // Debugging log
-        console.log("Setting Image Source:", zodiac.img); // Debugging log
 
         if (displayImage) {
             displayImage.src = zodiac.img;
-            displayImage.alt = zodiac.sign + " fish"; // Ensures accessibility
+            displayImage.alt = zodiac.sign + " fish"; // Accessibility
         }
 
         const displayQuestion = document.getElementById('question');
@@ -299,47 +272,33 @@ function getZodiac(month, day) {
     }
 }
 
-
 // event listeners for each zodiac sign button 
-maskAquarius.addEventListener('click', () => { 
-    getZodiac(1, 25);
-    console.log('aquarius clicked');
-}); 
-maskPisces.addEventListener('click', () => getZodiac(2, 19));
-maskAries.addEventListener('click', () => getZodiac(3, 21));
-maskTaurus.addEventListener('click', () => getZodiac(4, 20));
-maskGemini.addEventListener('click', () => getZodiac(5, 21));
-maskCancer.addEventListener('click', () => getZodiac(6, 22));
-maskLeo.addEventListener('click', () => getZodiac(7, 23));
-maskVirgo.addEventListener('click', () => getZodiac(8, 23));
-maskLibra.addEventListener('click', () => getZodiac(9, 23));
-maskScorpio.addEventListener('click', () => getZodiac(10, 24));
-maskSagittarius.addEventListener('click', () => getZodiac(11, 22));
-maskCapricorn.addEventListener('click', () => getZodiac(12, 22));
+aquariusButton.addEventListener('click', () => getZodiac(1, 25)); 
+piscesButton.addEventListener('click', () => getZodiac(2, 19));
+ariesButton.addEventListener('click', () => getZodiac(3, 21));
+taurusButton.addEventListener('click', () => getZodiac(4, 20));
+geminiButton.addEventListener('click', () => getZodiac(5, 21));
+cancerButton.addEventListener('click', () => getZodiac(6, 22));
+leoButton.addEventListener('click', () => getZodiac(7, 23));
+virgoButton.addEventListener('click', () => getZodiac(8, 23));
+libraButton.addEventListener('click', () => getZodiac(9, 23));
+scorpioButton.addEventListener('click', () => getZodiac(10, 24));
+sagittariusButton.addEventListener('click', () => getZodiac(11, 22));
+capricornButton.addEventListener('click', () => getZodiac(12, 22));
 
-/* event listener for the help button
-maskHelp.addEventListener('click', () => {
-    let zodiac = zodiac_data[zodiac_data.length - 1];
+// event listener for help button
+helpButton.addEventListener('click', () => {
+    showHelpContainer(); 
+})
 
-    // const displaySign = document.querySelector('#zodiac-sign');
-    const displayImage = document.querySelector('#zodiac-img');
-    const displayQuestion = document.querySelector('#question');
-    const displayAnswer = document.querySelector('#answer');
-    // const displayButton = document.querySelector('#back');
+// Event listener for back button in zodiac container
+backButtonInZodiac.addEventListener('click', () => {
+    stopCurrentAudio();
+    showMainContainer();
+});
 
-    displaySign.textContent = zodiac.sign;
-    displayImage.src = zodiac.img;
-    displayQuestion.textContent = zodiac.question;
-    displayAnswer.textContent = zodiac.answer;
-    displayButton.textContent = zodiac.buttonText;
-
-    showZodiacContainer();
-
-    playZodiacSound(zodiac.sign);
-});*/
-
-// event listener for the back button 
-//maskBackButton.addEventListener('click', () =>{
- //   showMainContainer();
-  //  stopCurrentAudio();
-//});
+// Event listener for back button in help container
+backButtonInHelp.addEventListener('click', () => {
+    stopCurrentAudio();
+    showMainContainer();
+});

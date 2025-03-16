@@ -1,5 +1,3 @@
-/* add fonts */
-    
     :root {
     --background-gradient-color1: #B3FFFC;
     --background-gradient-color2: #80B3D1;
@@ -81,12 +79,33 @@ h2 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.directions-and-help {
-    display: flex;
-    align-items: center;
+.help {
+    display: none;
+    padding: 2rem;
+    flex-direction: column; /* Ensures h1 is above h2 */
     justify-content: center;
-    gap: 8px; 
-  }
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.back-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none; 
+    border-radius: 10px;
+    cursor: pointer; 
+    width: 200px;
+}
+
+.back-button:hover {
+    background-color: #268fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Centering the grid */
 .image-grid {
@@ -119,10 +138,6 @@ h2 {
     border-radius: 100px;
 }
 
-.button {
-    cursor: pointer;
-  }
-
 /* Center the dob form */
 #dob {
     display: flex;
@@ -143,7 +158,7 @@ h2 {
 
 /* Hide zodiac */
 #zodiac-container {
-    display: none; /* Initially hidden */
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
